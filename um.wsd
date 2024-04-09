@@ -1,0 +1,60 @@
+@startuml
+left to right direction
+
+class Event {
+  - cancelled: boolean
+  - admin: Person
+  - name/date: datetime
+  - attendees: Person[]
+  - advanceNoticeTime: int
+  - UID: UUID
+  - capacity: int
+  - Active: boolean
+  - location: String
+  - end time: datetime
+  - send invite: boolean
+  + RSVP(Person): boolean
+  + checkAttendance(): boolean
+  + sendInvite(): boolean
+  + cancelEvent(): boolean
+}
+
+
+class NotificationPreferences {
+  - preferredMethod: String
+  - optInSMS: boolean
+  - optInEmail: boolean
+}
+
+class NotificationService {
+  + sendEmail(Person, Event): boolean
+  + sendSMS(Person, Event): boolean
+  + logNotification(Event, Person): boolean
+}
+
+class Person {
+  - Name: String
+  - Email: String
+  - UserID?: int
+  - Preferences: NotificationPreferences
+  + create_acc(): boolean
+  + create_Event(): Event
+  + subscribe_to(Category): boolean
+  + unsubscribe_to(Category): boolean
+}
+
+class Category {
+  - Name: String
+  - Events: Event[]
+  - Persons: Person[]
+  + addPersons(Person): boolean
+  + removeEvents(Event): boolean
+  + unsub_user(User): boolean
+  + sub_user(User): boolean
+}
+
+Category "1" *-- "many" Event : contains >
+Category "1" *-- "many" Person : contains >
+Person -- NotificationPreferences
+
+@enduml
