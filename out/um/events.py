@@ -1,4 +1,5 @@
 import uuid
+import Person from person
 
 class Event:
     def __intit__ (self, admin, name, date, advanceNoticeTime, capacity, location, end_time, send_invite):
