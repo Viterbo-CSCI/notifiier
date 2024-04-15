@@ -23,7 +23,8 @@ class Person:
         
         """
         pass
-    #hi
+    
+    
     
     #function to pick a category
     def subscribe_to(self,Category):
