@@ -2,6 +2,8 @@ import smtplib
 import twilio
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from person import person
+from events import event
 
 #region EmailNotifier
 class EmailInviter:
@@ -23,7 +25,7 @@ class EmailInviter:
         self.server.starttls()  # Start TLS encryption
         self.server.login(username, password)
     
-    def send_invitation(self, subject, message, from_addr, to_addrs):
+    def send_invitation(self, person, event):
         """
         Sends an email invitation to a list of recipients.
         Args:
@@ -36,14 +38,14 @@ class EmailInviter:
         """
         # Create the email message
         email_message = MIMEMultipart()
-        email_message['From'] = from_addr
-        email_message['To'] = ", ".join(to_addrs)
-        email_message['Subject'] = subject
-        email_message.attach(MIMEText(message, 'plain'))
+        email_message['From'] = person.email
+        email_message['To'] = ", ".join(person.to_addresses)
+        email_message['Subject'] = "You are invited to " + event.name
+        email_message.attach(MIMEText("message", 'plain'))
         
         # Send the email
         self.server.send_message(email_message)
-        print("Email sent to:", to_addrs)
+        print("Email sent to:", email_message['To'])
     
     def close(self):
         """
