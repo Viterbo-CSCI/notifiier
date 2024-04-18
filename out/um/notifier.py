@@ -70,6 +70,10 @@ class SMSInviter:
         self.client = Client(account_sid, auth_token)
         self.from_number = None
 
+    def send_sms(self, Person, event):
+        
+        self.send_invite(Person.phone, f"You're invited to {event.name} on {event.date} at {event.location}")
+
     def set_from_number(self, from_number):
         """
         Sets the Twilio phone number that will appear as the sender.
@@ -80,7 +84,7 @@ class SMSInviter:
         """
         self.from_number = from_number
 
-    def send_invite(self, to_number, message):
+    def send_invite(self, Person, message):
         """
         Sends an SMS invitation to a specified phone number.
         Args:
