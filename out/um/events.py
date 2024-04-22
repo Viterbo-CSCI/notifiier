@@ -1,5 +1,6 @@
 import uuid
-import Person from person
+from notifier import Notifier
+from person import Person
 
 class Event:
     def __intit__ (self, admin, name, date, advanceNoticeTime, capacity, location, end_time, send_invite):
@@ -29,6 +30,10 @@ class Event:
 
     def sendInvite(self):
         self.send_invite = True
+        my_notifier = Notifier()
+        for person in self.attendees:
+            my_notifier.send_invite(person, self)
+        
         return True 
 
     def cancelEvent(self):
