@@ -36,6 +36,19 @@ def create_category():
     # Add logic to save category
     return jsonify(message="Category created successfully", id=new_category.Id), 201
 
+
+
+@app.route('/create_category/<int:person_email>/<string:cat_name>', methods=['GET'])
+def create_category(person_email, cat_name): 
+    # Logic to create a category
+    pass
+
+@app.route('/add_event_category/<int:category_id>/<id:event_id>', methods=['GET'])
+def add_event_category(category_id, event_id):
+    # Logic to add an event to a category
+    pass
+
+
 @app.route('/category/<int:category_id>/subscribe', methods=['POST'])
 def subscribe_to_category(category_id):
     # Logic for a person to subscribe to a category
@@ -45,6 +58,13 @@ def subscribe_to_category(category_id):
 def unsubscribe_from_category(category_id):
     # Logic for a person to unsubscribe from a category
     pass
+
+
+@app.route('/event/create/<string:name>/<string:event_date>', methods=['GET'])
+def create_event():
+    def create_event(name, event_date):
+     new_event = Event(name, event_date)
+     return jsonify(message="Event created successfully", id=new_event.UID), 201
 
 # Event Management
 @app.route('/event', methods=['POST'])
