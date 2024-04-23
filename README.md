@@ -1,1 +1,2 @@
-# notifiier
+\\\
+source myenv/bin/activate
