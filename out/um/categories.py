@@ -1,11 +1,3 @@
-from person import Person
-from uuid import remove_Person
-from uuid import interest
-from uuid import remove_interest
-from uuid import remove_event
-from uuid import remove_event_category
-from uuid import add_event
-from uuid import new_event_category
 class Categories: #Create categories class to store info about categories
     def __init__(self, classname, event, person_email):
         self.classname = classname
