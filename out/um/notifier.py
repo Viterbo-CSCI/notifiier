@@ -2,8 +2,15 @@ import smtplib
 import twilio
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from person import person
-from events import event
+
+class Notifier:
+    def __init__(self):
+        self.email = EmailInviter()
+        self.sms = SMSInviter()
+    def send_sms(self, Person, event):
+        self.sms.send_sms(Person, event)
+    def send_email(self, Person, event):
+        self.email.send_invitation(Person, event)
 
 #region EmailNotifier
 class EmailInviter:

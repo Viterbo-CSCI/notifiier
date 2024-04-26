@@ -28,11 +28,24 @@ class Event:
     def checkAttendance(self):
         return len(self.attendees)
 
-    def sendInvite(self):
+    def sendSmsInvite(self):
         self.send_invite = True
         my_notifier = Notifier()
         for person in self.attendees:
-            my_notifier.send_invite(person, self)
+            try:
+                my_notifier.send_sms(person, self)
+            except:
+                print("Error sending SMS to:", person.phone)
+        return True 
+    
+    def sendEmailInvite(self):
+        self.send_invite = True
+        my_notifier = Notifier()
+        for person in self.attendees:
+            try:
+                my_notifier.send_email(person, self)
+            except:
+                print("Error sending email to:", person.email)
         
         return True 
 
