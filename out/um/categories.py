@@ -13,12 +13,15 @@ Categories("Studies", 0, 0)
 #Add persons
 def Addperson(Person, interest):
     Categories.append.person_email(interest, 0, Person.email)
+    
 #Add new event
 def Create_event(add_event, new_event_category):
     Categories.append.event(new_event_category, add_event, 0)
+
 #Remove person from event group
 def Removeperson(remove_Person, remove_interest):
     Categories.remove.person_email(remove_interest, 0, remove_Person.email)
+
 #Remove event
 def Remove_event(remove_event, remove_event_category):
     Categories.remove.event(remove_event_category, remove_event, 0)
